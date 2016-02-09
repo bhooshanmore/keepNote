@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 var bafMiddleware = require('before-and-after');
 var config = require('./config');
 
-var publicRoute = require('./routes/public');
+var publicRoute = require('./routes/publicRoute');
 var apiRoute = require('./routes/apiRoute');
 
 

@@ -65,7 +65,7 @@ User.pre('save', function(next) {
   });
 
 
-User.methods.verifyPassword = function(password,) {
+User.methods.verifyPassword = function(password) {
   return this.password === sha1(password+this.salt);
 }
 

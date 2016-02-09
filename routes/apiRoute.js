@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 
-var heartbeatController = require('../controllers/heartbeatController');
+var usersRoute = require('./usersRoute');
 
 router.use('/users', usersRoute);
 

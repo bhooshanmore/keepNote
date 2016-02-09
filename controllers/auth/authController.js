@@ -11,21 +11,20 @@ exports.login = function(req, res,next){
   User.findOne({ email: req.body.email }, function (err, user) {
     if(err) return next(err);
     if(!user) return next('No user found');
-    if(!user.verifyPassword(req.body.password)) return next(Incorrect password);
+    if(!user.verifyPassword(req.body.password)) return next("Incorrect password");
 
-      var signData = {
-        userid: user.userid,
-        name: user.name,
-        email: user.email
-      }
-      // generate token
-      var token = tokenizer.getToken(signData);
+    var signData = {
+      userid: user.userid,
+      name: user.name,
+      email: user.email
+    }
+    // generate token
+    var token = tokenizer.getToken(signData);
 
-      // exclude fields from response
-      res.exclude(['__id','__V', 'password', 'salt']);
-      
-      res.status(200).json({status: 200,message: 'login success', data: user,token:token});
-    });
+    // exclude fields from response
+    res.exclude(['__id','__V', 'password', 'salt']);
+
+    res.status(200).json({status: 200,message: 'login success', data: user,token:token});
   });
 }
 
