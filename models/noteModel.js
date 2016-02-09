@@ -15,7 +15,7 @@ var Note = new Schema({
 		type: String,
 		trim: true,
 	},
-	note:{
+	description:{
 		type: String,
 		required: true,
 		trim: true,
@@ -30,7 +30,5 @@ var Note = new Schema({
 		default : Date.now
 	}
 });
-
-
 
 module.exports = mongoose.model('Note',Note);

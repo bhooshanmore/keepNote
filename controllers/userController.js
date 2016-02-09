@@ -5,7 +5,6 @@ var User = require("../models/userModel.js");
 var dbHelper = require('../utils/dbHelper');
 var sequence = dbHelper.sequenceGenerator('user');
 
-
 exports.addUser = function(req,res,next){
 	User.findOne({email:req.body.email},function(err, user) {
 
@@ -42,8 +41,6 @@ exports.updateUser = function(req,res,next){
 	User.findOne({userid:req.params.userid},function(err,user){
 		if (err) return next(err);
 		if(!user) if (err) return next("User not found");
-
-		if(Object.keys(req.body).length == 0) return next("No parameter found");
 
 		if(user.name)
 			user.name = req.body.name;
@@ -99,9 +96,7 @@ exports.deleteUser = function(req,res,next){
 	
 	User.remove({ userid:req.params.userid },function(err,doc){
 		if(err) return next(err);
-		// check if the doc modified ?
 		if(doc.result.n<1) return next("Delete unsuccessful");
-
 		res.status(200).json({status:200,message:"User deleted"});
 	});
 }
