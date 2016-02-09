@@ -5,7 +5,7 @@ var TOKEN_EXPIRES_IN = 60*60*24; // 1 Day
 /*
  * getToken		This token will be generated after successful user login
  */
-function getToken(data) {
+exports.getToken = function(data) {
 	return jwt.sign(data, config.API_SECRET_KEY, { expiresIn: TOKEN_EXPIRES_IN });
 }
 

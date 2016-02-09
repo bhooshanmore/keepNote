@@ -22,7 +22,7 @@ exports.login = function(req, res,next){
     var token = tokenizer.getToken(signData);
 
     // exclude fields from response
-    res.exclude(['__id','__V', 'password', 'salt']);
+    res.exclude(['data._id','data.__v', 'data.password', 'data.salt']);
 
     res.status(200).json({status: 200,message: 'login success', data: user,token:token});
   });

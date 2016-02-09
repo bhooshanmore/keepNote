@@ -25,5 +25,10 @@ exports.isEmail = function(text){
 // Name validator
 exports.isName = function(text){
 
-	return text.length<50;
+	return text.length>3  && text.length<25;
+}
+// password validator
+exports.isPassword = function(text){
+
+	return text.length>4;
 }

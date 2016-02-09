@@ -10,8 +10,6 @@ var colors = require('colors');
 var mongoose = require('mongoose');
 var bafMiddleware = require('before-and-after');
 var config = require('./config');
-
-var publicRoute = require('./routes/publicRoute');
 var apiRoute = require('./routes/apiRoute');
 
 
@@ -28,6 +26,11 @@ db.once('open', function () {
 });
 
 var app = express();
+
+app.enable('trust proxy');
+app.disable('x-powered-by');
+app.disable('etag');
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -45,10 +48,7 @@ app.use(function(req, res, next) {
 });
 
 // routes
-app.use('/', publicRoute);
 app.use('/api', apiRoute);
-
-
 
 // configure development env
 if(app.get('env')==="development"){

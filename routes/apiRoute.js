@@ -2,9 +2,13 @@
 
 var express = require('express');
 var router = express.Router();
-
+var authController = require('../controllers/auth/authController');
 var usersRoute = require('./usersRoute');
 
+//user login
+router.post('/auth', authController.login);
+
+// api route for users
 router.use('/users', usersRoute);
 
 

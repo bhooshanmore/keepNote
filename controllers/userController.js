@@ -6,11 +6,12 @@ var dbHelper = require('../utils/dbHelper');
 var sequence = dbHelper.sequenceGenerator('user');
 
 exports.addUser = function(req,res,next){
-	User.findOne({email:req.body.email},function(err, user) {
+	
+	if(typeof req.body.email != "string") return next("Valid email address required");
 
+	User.findOne({email: req.body.email.toLowerCase()},function(err, user) {
 		if(user) return next("Email already exists");
-
-		// get the next userid
+			// get the next userid
 	    sequence.next(function(nextSeq){
 				var user = new User({
 					userid: nextSeq,
@@ -23,12 +24,15 @@ exports.addUser = function(req,res,next){
 				user.save(function(err) {
 					if (err){
 						console.log(err);
-			    	if(err.name == 'ValidationError') return next('Invalid parameters');
+			    	if(err.name == 'ValidationError'){
+			    		
+			    		return next(err.errors[Object.keys(err.errors)[0]].message);
+			    	}
 			    	return next(err);
 					}
 
 					// exclude fields from response
-					res.exclude(['__id','__V', 'password', 'salt']);
+					res.exclude(['data._id','data.__v', 'data.password', 'data.salt']);
 
 			    res.status(200).json({status:200,message:"New user added",data: user});
 				});
@@ -57,7 +61,7 @@ exports.updateUser = function(req,res,next){
 		    	return next(err);
 			}
 			// exclude fields from response
-			res.exclude(['__id','__V', 'password', 'salt']);
+			res.exclude(['data._id','data.__v', 'data.password', 'data.salt']);
 
 	    res.status(200).json({status:200,message:"User details updated",data: user});
 		});
