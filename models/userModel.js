@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var sha1 = require('sha1');
 var bcrypt = require('bcrypt-nodejs');
-var validator = require('../utils/validator')
+var validator = require('../utils/validator');
 var Schema = mongoose.Schema;
 
 var User = new Schema({

@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var User = require("../models/userModel.js");
 var dbHelper = require('../utils/dbHelper');
 var sequence = dbHelper.sequenceGenerator('user');
+var validator = require('../utils/validator');
 
 exports.addUser = function(req,res,next){
 	
@@ -105,13 +106,13 @@ exports.deleteUser = function(req,res,next){
 	});
 }
 
-// search users
+// search user by name or email address
 exports.lookupUser = function(req,res,next){
 
 	var regx =new RegExp(req.query.query,'i')
 	var query = {$or: [{full_name: {$regex : regx} }, {email: {$regex : regx} }]};
 
-	User.find(query, 'userid name email status -_id -__V', {sort:{name:1}} ,function(err, users) {
+	User.find(query, 'userid name email', {sort:{name:1}} ,function(err, users) {
 		if (err) return next(err);
 		res.status(200).json({status:200,message:"Users", data: users});
 	});

@@ -12,7 +12,7 @@ var authenticate = authController.authenticate;
 router.post('/', userController.addUser);
 
 // search user by name or email address
-router.get('/lookup',userController.lookupUser);
+router.get('/search',userController.lookupUser);
 
 // get a specific user info
 router.get('/:userid', authenticate, userController.getUser);

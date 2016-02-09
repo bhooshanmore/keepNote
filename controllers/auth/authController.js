@@ -38,7 +38,7 @@ exports.authenticate = function(req,res,next){
   // validate authentication token
   if(!req.headers.token) return next('Authentication token required');
   
-  tokenizer.verifyToken(token, function(err, decoded) {
+  tokenizer.verifyToken(req.headers.token, function(err, decoded) {
 
     if (err) {
       if(err.name == 'TokenExpiredError') return next('Token expired');
