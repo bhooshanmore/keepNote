@@ -12,6 +12,7 @@ exports.addNote = function(req,res,next){
     sequence.next(function(nextSeq){
 		var note = new Note({
 			noteid: nextSeq,
+			userid: req.params.userid,
 			title: req.body.title,
 			description: req.body.description,
 			create_ts: Date.now()
@@ -20,7 +21,9 @@ exports.addNote = function(req,res,next){
 		note.save(function(err) {
 			if (err){
 				console.log(err);
-	    	if(err.name == 'ValidationError') return next('Invalid parameters');
+	    	// return the message for validationError
+		    if(err.name == 'ValidationError') return next(err.errors[Object.keys(err.errors)[0]].message);
+
 	    	return next(err);
 			}
 
@@ -30,16 +33,16 @@ exports.addNote = function(req,res,next){
 }
 
 exports.getNotes = function(req,res,next){
-	Note.find({noteid:req.params.noteid},function(err, notes) {
+	Note.find({userid:req.params.userid},function(err, notes) {
 		if (err) return next(err);
 		res.status(200).json({status:200,message:"Notes",data:notes});
 	});
 }
 
 exports.getNote = function(req,res,next){
-	Note.findOne({noteid:req.params.noteid},function(err, notes) {
+	Note.findOne({noteid:req.params.noteid},function(err, note) {
 		if (err) return next(err);
-		res.status(200).json({status:200,message:"Notes",data:notes});
+		res.status(200).json({status:200,message:"Note",data:note || {}});
 	});
 }
 
@@ -47,17 +50,19 @@ exports.updateNote = function(req,res,next){
 
 	Note.findOne({noteid:req.params.noteid},function(err,note){
 		if (err) return next(err);
-		if(!note) if (err) return next("Note not found");
+		if(!note) return next("Note not found");
 
-		note.title = req.body.tile;
-		note.note = req.body.description;
+		note.title = req.body.title;
+		note.description = req.body.description;
 		note.last_update_ts = Date.now();
 
 		note.save(function(err){
 			if (err){
 				console.log(err);
-				if(err.name == 'ValidationError') return next('Invalid parameters');	    		
-		    	return next(err);
+				// return the message for validationError
+		    if(err.name == 'ValidationError') return next(err.errors[Object.keys(err.errors)[0]].message);
+
+		    return next(err);
 			}
 	    res.status(200).json({status:200,message:"Note details updated",data: note});
 		});

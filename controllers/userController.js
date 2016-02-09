@@ -25,10 +25,10 @@ exports.addUser = function(req,res,next){
 				user.save(function(err) {
 					if (err){
 						console.log(err);
-			    	if(err.name == 'ValidationError'){
-			    		
-			    		return next(err.errors[Object.keys(err.errors)[0]].message);
-			    	}
+
+						// return the message for validationError
+			    	if(err.name == 'ValidationError') return next(err.errors[Object.keys(err.errors)[0]].message);
+			    	
 			    	return next(err);
 					}
 
@@ -45,7 +45,7 @@ exports.updateUser = function(req,res,next){
 	
 	User.findOne({userid:req.params.userid},function(err,user){
 		if (err) return next(err);
-		if(!user) if (err) return next("User not found");
+		if(!user) return next("User not found");
 
 		if(user.name)
 			user.name = req.body.name;
@@ -58,8 +58,10 @@ exports.updateUser = function(req,res,next){
 		user.save(function(err){
 			if (err){
 				console.log(err);
-				if(err.name == 'ValidationError') return next('Invalid parameters');	    		
-		    	return next(err);
+				// return the message for validationError
+		    if(err.name == 'ValidationError') return next(err.errors[Object.keys(err.errors)[0]].message);
+		    
+	    	return next(err);
 			}
 			// exclude fields from response
 			res.exclude(['data._id','data.__v', 'data.password', 'data.salt']);

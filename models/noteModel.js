@@ -11,6 +11,10 @@ var Note = new Schema({
 		type : Number,
 		unique : true
 	},
+	userid:{
+		type: Number,
+		require: true
+	},
 	title:{
 		type: String,
 		trim: true,

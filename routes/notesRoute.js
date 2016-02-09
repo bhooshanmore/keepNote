@@ -1,7 +1,7 @@
 "use strict";
 
 var express = require('express');
-var router = express.Router();
+var router = express.Router({ mergeParams: true });
 
 var noteController = require('../controllers/noteController');
 var authController = require('../controllers/auth/authController');
@@ -16,13 +16,13 @@ router.post('/', noteController.addNote);
 router.get('/', noteController.getNotes);
 
 // get one specific note
-router.get('/:nodeid', noteController.getNote);
+router.get('/:noteid', noteController.getNote);
 
 // update a note
-router.put('/:userid', authenticate, noteController.updateNote);
+router.put('/:noteid', authenticate, noteController.updateNote);
 
 // delete a note
-router.delete('/:userid', authenticate, noteController.deleteNote);
+router.delete('/:noteid', authenticate, noteController.deleteNote);
 
 
 module.exports = router;

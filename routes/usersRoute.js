@@ -28,6 +28,6 @@ router.delete('/:userid', authenticate, userController.deleteUser);
 
 
 // Routes for notes
-router.use('/:userid/notes', notesRoute);
+router.use('/:userid/notes', authenticate, notesRoute);
 
 module.exports = router;
