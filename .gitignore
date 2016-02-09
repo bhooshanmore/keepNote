@@ -1,0 +1,9 @@
+.tmp
+dist
+*.zip
+
+node_modules
+public/bower_components
+
+.directory
+npm-debug.log
