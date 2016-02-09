@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var colors = require('colors');
 var mongoose = require('mongoose');
+var bafMiddleware = require('before-and-after');
 var config = require('./config');
 
 var publicRoute = require('./routes/public');
@@ -33,7 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(bafMiddleware);
 
 // Enable cors
 app.use(function(req, res, next) {
@@ -42,7 +43,6 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, X-Requested-With, token, Authorization');
   next();
 });
-
 
 // routes
 app.use('/', publicRoute);

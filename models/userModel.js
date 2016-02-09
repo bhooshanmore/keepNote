@@ -30,6 +30,9 @@ var User = new Schema({
 		type: String,
 		required: true
 	},
+	profile_pic:{
+		type: String
+	},
 	salt:{
 		type: String
 	},
@@ -62,7 +65,7 @@ User.pre('save', function(next) {
   });
 
 
-User.methods.verifyPassword = function(password, callback) {
+User.methods.verifyPassword = function(password,) {
   return this.password === sha1(password+this.salt);
 }
 

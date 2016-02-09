@@ -24,7 +24,7 @@ router.get('/:userid', authenticate, userController.getUser);
 router.put('/:userid', authenticate, userController.updateUser);
 router.delete('/:userid', authenticate, userController.deleteUser);
 
-router.put('/:userid/profilePhoto', authenticate, userController.updateProfilePic);
+router.put('/:userid/profilePhoto', authenticate, userController.changeProfilePic);
 
 
 
