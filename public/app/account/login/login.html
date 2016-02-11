@@ -1,0 +1,34 @@
+<style type="text/css">
+	body{background-color: #f3f3f3}
+</style>	
+<div layout='row' style="height: -webkit-calc(15%)">
+</div>
+<div layout='row' class="login-page">
+	<div flex=25></div>
+	<div flex=50 >
+		<section layout="row" flex="90">
+				<md-card class='login-container' flex='70' >
+					<md-card-content>
+						<div class='logo-container'>
+							<img src='assets/images/keep-icon.png'/>
+						</div>
+						<form name="userForm" ng-submit="Login()" >
+							<md-input-container class='md-block' >
+								<md-icon class="fa fa-envelope email"></md-icon>
+								<input ng-model="user.email" name="email" type="email" placeholder="Email" ng-required="true">
+							</md-input-container>
+							<md-input-container class='md-block'>
+								<md-icon class='fa fa-key' style="display:inline-block;"></md-icon>
+								<input ng-model="user.password" type="password" ng-required="true" placeholder="Password" />
+							</md-input-container>
+							<md-button class="md-raised md-primary login-btn" type='submit'>Login</md-button>	
+						</form>
+						<div class="sans-login">
+							<span><a ui-sref="signup">Sign Up</a></span>
+						</div>
+					</md-card-content>
+				</md-card>
+		</section>
+	</div>
+
+</div>

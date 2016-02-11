@@ -1,36 +1,48 @@
-<div class="pull-right"  class="navbar">
+<div layout-fill layout="column" class="md-whiteframe-z2 sidebar navbar" >
+	<div >
+		<md-toolbar class="md-warn">
+			<div class="md-toolbar-tools">
+				<h2 class="md-flex">Side Menu</h2>
+			</div>
+		</md-toolbar>
+		<div class="navbar">
+			<section>
+				<md-list layout-padding>
+					<md-list-item class="md-3-line">
+						<img ng-src="assets/images/profile_pic.jpg" class="avatar" alt="">
+						<div class="md-list-item-text">
+							<h3>Ikrum Hossain</h3>
+							<h4>ikrum.bd@gmail.com <a ui-sref="settings" class='fa fa-cog pull-right user-action-trigger'></a></h4>
+						</div>
+					</md-list-item>
+				</md-list>
+			</section>
 
-	<div><img class="img-adaptive avatar" src="assets/images/profile_pic.jpg" /></div>
+			<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open=true >
+				<md-list class='main-navbar-list'>
 
-		<div class='name md-title'>Ikrum Hossain</div>
-		<div>
-			<span class='email'>ikrum.bd@gmail.com</span>
-			<a ui-sref="settings" class='fa fa-cog pull-right user-action-trigger'></a>
+					<md-list-item>
+						<a ui-sref='#' > NavLabel </a>
+					</md-list-item>
+
+
+					<md-list-item>
+						<a ui-sref='#' > NavLabel </a>
+					</md-list-item>
+
+					<md-list-item>
+						<a ui-sref='#' > NavLabel </a>
+					</md-list-item>
+
+					<md-list-item>
+						<a ui-sref='#' > NavLabel </a>
+					</md-list-item>
+
+				</md-list>
+			</md-sidenav>
+			<md-divider></md-divider>
+			<div ng-click="logout()" style="padding:16px;cursor:pointer" >Logout</div>
+
 		</div>
 	</div>
-	<md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open=true >
-		<md-list class='main-navbar-list'>
-
-			<md-list-item>
-				<a ui-sref='#' > NavLabel </a>
-			</md-list-item>
-
-
-			<md-list-item>
-				<a ui-sref='#' > NavLabel </a>
-			</md-list-item>
-
-			<md-list-item>
-				<a ui-sref='#' > NavLabel </a>
-			</md-list-item>
-
-			<md-list-item>
-				<a ui-sref='#' > NavLabel </a>
-			</md-list-item>
-
-		</md-list>
-	</md-sidenav>
-	<md-divider></md-divider>
-	<div ng-click="logout()" style="padding:16px;cursor:pointer" >Logout</div>
-
 </div>

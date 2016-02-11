@@ -3,7 +3,6 @@
 angular.module('keepNote')
   .controller('NotesCtrl',function($scope,$mdDialog){
 
-    $scope.notes = [];
+        $scope.notes = [];
 
-  	
 });

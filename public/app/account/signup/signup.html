@@ -1,0 +1,43 @@
+<style type="text/css">
+	body{background-color: #f3f3f3}
+</style>	
+<div layout='row'>
+	<div flex='25'></div>
+	<div flex='50'>
+		<section layout="row" flex="90">
+				<md-card class='signup-container'>
+					<md-card-content>
+
+
+
+						<form name="userSignupForm" ng-submit="signup(form)">
+							<md-input-container class='md-block'>
+								<label>Email (required)</label>
+								<input ng-model="user.email" name="email" type="email" ng-required="true">
+							</md-input-container>
+							<div layout>
+								<md-input-container flex>
+									<label>Name (required)</label>
+									<input ng-model="user.name" type="test" ng-required="true">
+								</md-input-container>
+							</div>
+							<div layout>
+								<md-input-container flex>
+									<label>Password</label>
+									<input ng-model="user.password" type="password" name='password' ng-required="true" ng-minlength=5 />
+								</md-input-container>
+							
+							</div>
+							<div layout='row' style="color:gray; font-size:10px;">Password must be 5 character long</div> 
+							<md-button class="md-raised md-primary signup-btn" ng-disabled="userSignupForm.$invalid" type='submit' >Signup</md-button>			
+						</form>
+						
+						<div class="sans-login">
+							<span><a ui-sref="login">Go to Login Page</a></span>
+						</div>
+					</md-card-content>
+				</md-card>
+
+		</section>
+	</div>
+</div>
