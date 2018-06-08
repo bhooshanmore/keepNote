@@ -1,0 +1,16 @@
+<md-dialog  ng-cloak flex='40'>
+    <md-dialog-content class="note-diaglog">
+      <div>
+        <md-input-container class='md-block' >
+          <input ng-model="selectedNote.title"  placeholder="Title"/>
+        </md-input-container>
+      </div>
+      <md-input-container class='md-block' >
+        <input ng-focus="ngShow = true" ng-model="selectedNote.description"  placeholder="Note"/>
+      </md-input-container>
+      <div>
+        <md-button class='md-primary md-raised pull-right' ng-click="updateNote(selectedNote)">Update</md-button>
+        <md-button class='md-warn md-raised pull-right' ng-click="deleteNote(selectedNote)">Delete</md-button>
+      </div>
+    </md-dialog-content>
+</md-dialog>

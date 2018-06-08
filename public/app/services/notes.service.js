@@ -1,9 +1,10 @@
 angular.module('keepNote')
 .service('Notes',function($cookies,$http,$state,Header){
 	this.notes = [];
-	var userid = Header.getUserId();
+
 
 	this.fetch = function(callback){
+		var userid = Header.getUserId();
 		var endpoint = "/api/users/"+userid+"/notes";
 		var doc = this;
 		var cb = callback || angular.noop;
@@ -20,6 +21,7 @@ angular.module('keepNote')
 	}
 
 	this.add = function(note,callback){
+		var userid = Header.getUserId();
 		var endpoint = "/api/users/"+userid+"/notes";
 		var doc = this;
 		var cb = callback || angular.noop;
@@ -33,10 +35,11 @@ angular.module('keepNote')
 	}
 
 	this.update = function(note,callback){
+		var userid = Header.getUserId();
 		var cb = callback || angular.noop;
 	    var doc = this;
 	    var endpoint = "/api/users/"+userid+"/notes/"+note.noteid;
-	    
+
 	    return $http.put(endpoint, note, Header.getTokenHeader() ).success(function(response){
 	    		for( var index in doc.notes){
 	    			if(doc.notes[index] == note.noteid){
@@ -51,6 +54,7 @@ angular.module('keepNote')
 	}
 
 	this.delete = function(note,callback){
+		var userid = Header.getUserId();
 		var cb = callback || angular.noop;
 	    var doc = this;
 

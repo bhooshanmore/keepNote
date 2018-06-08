@@ -12,7 +12,7 @@ angular.module('keepNote')
 				cb(null,response);
 			}).error(function(response){
 				cb(response);
-			});	
+			});
 	  }
 
 	  // user login
@@ -21,12 +21,22 @@ angular.module('keepNote')
       $http.post('/api/auth', user).success(function(data) {
         $cookies.put('token', data.token);
         $cookies.put('userid', data.data.userid);
+        $cookies.put('name', data.data.name);
+        $cookies.put('email', data.data.email);
 
         cb(null,data.data);
       }).error(function(err) {
         //this.logout();
         cb(err);
       });
+    }
+
+    this.getUser = function(){
+      return {
+        name: $cookies.get("name"),
+        email: $cookies.get("email"),
+        userid: $cookies.get("userid"),
+      }
     }
 
     // logout user
@@ -41,4 +51,3 @@ angular.module('keepNote')
       return angular.isDefined($cookies.get("userid")) && angular.isDefined($cookies.get("token"));
     }
   });
-

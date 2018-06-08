@@ -11,8 +11,8 @@
 					<md-list-item class="md-3-line">
 						<img ng-src="assets/images/profile_pic.jpg" class="avatar" alt="">
 						<div class="md-list-item-text">
-							<h3>Ikrum Hossain</h3>
-							<h4>ikrum.bd@gmail.com <a ui-sref="settings" class='fa fa-cog pull-right user-action-trigger'></a></h4>
+							<h3>{{user.name}}</h3>
+							<h4>{{user.email}}<a ui-sref="settings" class='fa fa-cog pull-right user-action-trigger'></a></h4>
 						</div>
 					</md-list-item>
 				</md-list>
@@ -22,20 +22,16 @@
 				<md-list class='main-navbar-list'>
 
 					<md-list-item>
-						<a ui-sref='#' > NavLabel </a>
+						<a ui-sref='#' > Office Notes </a>
 					</md-list-item>
 
 
 					<md-list-item>
-						<a ui-sref='#' > NavLabel </a>
+						<a ui-sref='#' > Project Notes </a>
 					</md-list-item>
 
 					<md-list-item>
-						<a ui-sref='#' > NavLabel </a>
-					</md-list-item>
-
-					<md-list-item>
-						<a ui-sref='#' > NavLabel </a>
+						<a ui-sref='#' > Family Notes </a>
 					</md-list-item>
 
 				</md-list>

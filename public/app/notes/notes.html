@@ -1,22 +1,22 @@
 <div layout="row" layout-fill>
 	<div layout='column' flex='17' ng-include="'app/navbar/navbar.html'" ng-controller="NavbarCtrl" class="sidenav" ></div>
 	<div layout='column' layout-fill>
-		
+
 		<div  class='notes-container'>
 
 			<div class=''  layout="row" layout-align="center" layout-wrap >
-				<md-card flex='40' class='post-ta-card'>
+				<md-card flex='50' class='post-ta-card'>
 					<md-card-content>
 	                    <div>
 	                        <md-input-container class='md-block' >
-	                            <input ng-model="newTitle" class='input-ta' placeholder="Title"/>
+	                            <input ng-model="newTitle"  placeholder="Title"/>
 	                        </md-input-container>
 	                    </div>
 	                    <md-input-container class='md-block' >
-	                        <input ng-focus="ngShow = true" ng-model="newNote" class='input-ta' placeholder="Note"/>
+	                        <input ng-focus="ngShow = true" ng-model="newNote"  placeholder="Note"/>
 	                    </md-input-container>
-						<div ng-if="taIsFocussed" class="taIsFocussed">
-							<md-button class='md-primary md-raised pull-right' ng-click="addPost()" ng-disabled="!newPost || (addToCoursebook && !selectedItem) ">Post</md-button>
+						<div>
+							<md-button class='md-primary md-raised pull-right' ng-click="addNote()" ng-disabled="!newTitle || !newNote">Post</md-button>
 						</div>
 					</md-card-content>
 				</md-card>
@@ -25,9 +25,10 @@
 
 
 			<div class='notes-container' layout='row'  layout-wrap >
-				<md-card class='post-ta-card'>
-					<md-card-content>
-					dsgdsfgdfsg
+				<md-card class='post-ta-card' ng-repeat="note in notes">
+					<md-card-content class="note-content" ng-click="showDialog(note)">
+						<h3>{{note.title}}</h3>
+						<p>{{note.description}}</p>
 
 					</md-card-content>
 				</md-card>

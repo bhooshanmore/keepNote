@@ -19,9 +19,18 @@ body {
   display: inline-block;
   margin-right: 20px;
 }
+.navbar a:hover {
+  cursor: pointer;
+}
 .notes-container {
   padding: 10px;
   margin-top: 10px;
+}
+.note-content {
+  min-width: 200px;
+}
+.note-diaglog {
+  padding: 25px;
 }
 .login-container {
   margin: auto;
